@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Airline_Booking.flight>
+
+@{
+    ViewBag.Title = "Book";
+    Layout = "~/Views/Shared/_User.cshtml";
+}
+
+<h2>Book</h2>
+
+    <div class="row">
+
+
+        @foreach (var item in Model)
+        {
+            
+        <div class="col-md-4">
+            <div class="card my-2">
+                <img class="card-img" src="@item.fimage"  height="250" />
+                <div class="p-2">
+                <h3>@item.fname</h3>
+                <h5>@item.brand</h5>
+                <p>Trip: @item.ffrom - @item.fto</p>
+                <h5>₹. @item.price</h5>
+                <a href="/Home/Details/@item.id" class="btn btn-primary">More Details</a>
+                    </div>
+            </div>
+        </div>
+    }
+
+        </div>

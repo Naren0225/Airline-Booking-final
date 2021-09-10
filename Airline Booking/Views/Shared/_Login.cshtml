@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <li><a class="nav-link scrollto" href="#">Hello, @User.Identity.GetUserName()</a></li>
+    <li><a class="nav-link scrollto" href="/Home/MyOrders">My Orders</a></li>
+    using (Html.BeginForm("LogOut", "Login", FormMethod.Post))
+    {
+        <li><a href="javascript:;" class="nav-link scrollto" onclick="document.forms[0].submit();">Logout</a></li>
+    }
+}
+else
+{
+    <li><a class="nav-link" href="/Login/">Login</a></li>
+    <li><a class="nav-link" href="/Login/Register">Sign Up</a></li>
+}

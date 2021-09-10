@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="airlineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fid" Type="int" />
+          <Property Name="uid" Type="int" />
+          <Property Name="qty" Type="int" />
+          <Property Name="cardno" Type="varchar" MaxLength="50" />
+          <Property Name="cvv" Type="nchar" MaxLength="10" />
+          <Property Name="exp_date" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="bookdate" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="flights">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="50" />
+          <Property Name="fimage" Type="text" />
+          <Property Name="fto" Type="text" />
+          <Property Name="ffrom" Type="text" />
+          <Property Name="days" Type="varchar" MaxLength="50" />
+          <Property Name="time" Type="varchar" MaxLength="50" />
+          <Property Name="airportname" Type="text" />
+          <Property Name="price" Type="int" />
+          <Property Name="brand" Type="text" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="adhaar" Type="varchar" MaxLength="50" />
+          <Property Name="passport" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_booking_flights">
+          <End Role="flights" Type="Self.flights" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="flights">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="fid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="airlineModelStoreContainer">
+          <EntitySet Name="booking" EntityType="Self.booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="flights" EntityType="Self.flights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_booking_flights" Association="Self.FK_booking_flights">
+            <End Role="flights" EntitySet="flights" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_users" Association="Self.FK_booking_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="airlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fid" Type="Int32" />
+          <Property Name="uid" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="cardno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cvv" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="exp_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bookdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="flight" Relationship="Self.FK_booking_flights" FromRole="booking" ToRole="flights" />
+          <NavigationProperty Name="user" Relationship="Self.FK_booking_users" FromRole="booking" ToRole="users" />
+        </EntityType>
+        <EntityType Name="flight">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ffrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="days" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="airportname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK_booking_flights" FromRole="flights" ToRole="booking" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adhaar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK_booking_users" FromRole="users" ToRole="booking" />
+        </EntityType>
+        <Association Name="FK_booking_flights">
+          <End Role="flights" Type="Self.flight" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="flights">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="fid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_users">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="airlineEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bookings" EntityType="Self.booking" />
+          <EntitySet Name="flights" EntityType="Self.flight" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_booking_flights" Association="Self.FK_booking_flights">
+            <End Role="flights" EntitySet="flights" />
+            <End Role="booking" EntitySet="bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_users" Association="Self.FK_booking_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="booking" EntitySet="bookings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="airlineModelStoreContainer" CdmEntityContainer="airlineEntities">
+          <EntitySetMapping Name="bookings">
+            <EntityTypeMapping TypeName="airlineModel.booking">
+              <MappingFragment StoreEntitySet="booking">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fid" ColumnName="fid" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="cardno" ColumnName="cardno" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="exp_date" ColumnName="exp_date" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="bookdate" ColumnName="bookdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flights">
+            <EntityTypeMapping TypeName="airlineModel.flight">
+              <MappingFragment StoreEntitySet="flights">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="fimage" ColumnName="fimage" />
+                <ScalarProperty Name="fto" ColumnName="fto" />
+                <ScalarProperty Name="ffrom" ColumnName="ffrom" />
+                <ScalarProperty Name="days" ColumnName="days" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="airportname" ColumnName="airportname" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="airlineModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="adhaar" ColumnName="adhaar" />
+                <ScalarProperty Name="passport" ColumnName="passport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

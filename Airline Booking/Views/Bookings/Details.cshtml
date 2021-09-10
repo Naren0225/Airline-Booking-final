@@ -1,0 +1,82 @@
+﻿@model Airline_Booking.booking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.qty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cardno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cardno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cvv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cvv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exp_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exp_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flight.fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flight.fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

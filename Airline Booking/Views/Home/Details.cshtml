@@ -1,0 +1,29 @@
+﻿@model Airline_Booking.flight
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_User.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>flight</h4>
+    <hr />
+
+    <div class="row ">
+        <div class="col-md-6">
+            <img src="@Model.fimage" width="400" height="400"/>
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.fname</h2>
+            <h2>@Model.brand</h2>
+            <h3>@Model.ffrom - @Model.fto</h3>
+            <h4>@Model.days</h4>
+            <h4>@Model.time</h4>
+            <h5>@Model.airportname</h5>
+            <h5>₹. @Model.price</h5>
+            <a href="/Home/MakeOrder?fid=@Model.id" class="btn btn-success">Book A Ticket</a>
+        </div>
+    </div>
+</div>

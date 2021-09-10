@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Airline_Booking.booking>
+
+@{
+    ViewBag.Title = "MyOrders";
+    Layout = "~/Views/Shared/_User.cshtml";
+}
+
+<h2>MyOrders</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flight.fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flight.ffrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flight.fto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flight.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flight.time);
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flight.airportname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flight.days)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flight.fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flight.ffrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flight.fto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flight.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flight.time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flight.airportname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flight.days);
+        </td>
+        
+    </tr>
+}
+
+</table>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cardno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cvv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exp_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bookdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flight.fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cardno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cvv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exp_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bookdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flight.fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.name)
+        </td>
+        
+    </tr>
+}
+
+</table>
+*@
